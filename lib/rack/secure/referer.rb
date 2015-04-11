@@ -5,7 +5,7 @@ module Rack
   module Secure
     module Referer
       def new(env)
-        unless env['HTTP_REFERER'].nil? || env['HTTP_REFERER'].match(/\Ahttp(s)?:\/\//i)
+        if !env['HTTP_REFERER'].nil? && !env['HTTP_REFERER'].match(/\Ahttp(s)?:\/\//i)
           env['HTTP_REFERER'] = nil
         end
         super
