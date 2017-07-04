@@ -4,7 +4,8 @@ require 'rack/request'
 module Rack
   module Secure
     module Referer
-      def new(env)
+      def new(*args)
+        env = args[0]
         if !env['HTTP_REFERER'].nil? && !env['HTTP_REFERER'].match(/\Ahttp(s)?:\/\//i)
           env['HTTP_REFERER'] = nil
         end
